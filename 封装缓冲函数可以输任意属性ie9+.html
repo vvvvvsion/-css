@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>运动缓冲函数</title>
+    <style>
+        #box{width:100px;height:100px;background-color: #000;filter:alpha(opacity=100);position: absolute;}
+    </style>
+    <script>
+        window.onload=function(){
+            var oDiv=document.getElementsByTagName('div')[0];
+            //输入参数执行
+            buffer(oDiv,"opacity",0);
+
+            function buffer(obj,attr,target) {
+                var str2=getStyle(obj,attr);
+              //ie的(attr=="opacity"&&obj.filter)为真;
+                var str="",n=0,m=0;var arr=[];
+                for(var i=0;i<str2.length;i++){
+                    if(str2.charCodeAt(i)<=57&&str2.charCodeAt(i)>=48){
+                        n++;m=i;
+                        str=str+str2[i];
+                    }                }
+                 str=Number(str);
+                arr=str2.split("");
+                arr.splice(m-n+1,n,str);
+                if(attr=="opacity"){target*=100;str*=100}
+            var timer=setInterval(function () {
+                var speed=(target-str)/10;
+                 speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                 str=str+speed;
+                 if(attr=="opacity"&&!obj.filter){arr.splice(0,1,str/100);}
+                 else { arr.splice(0,1,str);}
+                var arr2=arr;
+                 if(!obj.filter){
+                     var str2=arr2.join("");
+                     obj.style[attr]=str2;
+                 }
+                else {
+                    obj.style[attr]="alpha(opacity="+arr.join('')+")";
+                 }
+                if(str==target){
+                    clearInterval(timer)
+                }
+                },50)
+              }
+                function  getStyle(obj,attr) {
+                    return  obj.currentStyle ?  obj.currentStyle[attr] :  getComputedStyle(obj)[attr];
+                }
+            
+            
+        }
+    </script>
+</head>
+<body>
+<div id="box"></div>
+</body>
+</html>
