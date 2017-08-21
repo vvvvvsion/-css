@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>3d</title>
+<style>
+.box {
+
+	left: 200px;
+	top: 200px;
+	background-color: #F39;
+	transition:6s;
+	transform-style:preserve-3d;
+	
+	
+}
+.box2 {
+	width: 800px;
+	height: 800px;
+	background-color: #F96;	
+	perspective:500px
+	
+	
+	
+}
+.box2 div{position:absolute;width:200px;height:200px;}
+.box div:nth-child(1){left:0;top:200px;background-color:#9F6;transform:rotateX(-90deg);transform-origin:top;}
+.box div:nth-child(2){left:200px;top:0px;background-color:#C96;transform:rotateY(90deg);transform-origin:left;}
+.box div:nth-child(3){right:200px;top:0px;background-color:#69C;transform:rotateY(-90deg);transform-origin:right;}
+.box div:nth-child(4){right:0;bottom:200px;background-color:#C6F;transform:rotateX(90deg);transform-origin:bottom;}
+.box div:nth-child(5){left:0;top:0px;background-color:#F9C;transform:translateZ(-200px)}
+.box div:nth-child(6){left:0;top:0px;background-color:#96C;}
+.box2:hover .box{transform:rotateY(360deg) rotateX(360deg)}
+
+</style>
+</head>
+
+<body>
+<div class="box2">
+  <div class="box">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+</body>
+</html>
